@@ -3,15 +3,17 @@
 /**
  * @type {import('next').NextConfig}
  **/
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
 
-const nextConfig = {
+const nextConfig = withPWA({
     reactStrictMode: true,
     swcMinify: true,
-    webpack(config) {
-        config.output.webassemblyModuleFilename = "static/wasm/[modulehash].wasm";
-        config.experiments = { asyncWebAssembly: true };
-        return config;
+    pwa: {
+        dest: "public",
+        runtimeCaching,
+        disable: process.env.NODE_ENV === "production" ? false : true,
     },
-};
+});
 
 module.exports = nextConfig;
