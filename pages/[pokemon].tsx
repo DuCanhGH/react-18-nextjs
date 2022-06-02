@@ -45,13 +45,13 @@ export default function Home(props: PageProps) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.container}>
-                <h1>Pokemon: {pokemon}</h1>
+                <h1 className="text-3xl font-bold underline">Pokemon: {pokemon}</h1>
                 {data ? (
                     <div>
                         <p>Height: {data.height}</p>
                         <p>Weight: {data.weight}</p>
                         <ul>
-                            {data.types.map(({ type }) => (
+                            Types: {data.types.map(({ type }) => (
                                 <li key={type.name}>{type.name}</li>
                             ))}
                         </ul>
