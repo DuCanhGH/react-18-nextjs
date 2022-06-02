@@ -15,8 +15,13 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "preserve",
+        "jsxImportSource": "@emotion/react",
         "importHelpers": true,
-        "incremental": true
+        "incremental": true,
+        "baseUrl": ".",
+        "paths": {
+            "~/*": ["/*"]
+        }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]

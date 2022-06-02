@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "~/styles/Home.module.css";
 import useSWR from "swr";
 import { GetServerSideProps } from "next";
 import axios from "axios";
@@ -47,9 +47,6 @@ export default function Home(props: PageProps) {
             <h1>Pokemon: {pokemon}</h1>
             {data ? (
                 <div>
-                    <figure>
-                        <img src={data.sprites.front_default} />
-                    </figure>
                     <p>Height: {data.height}</p>
                     <p>Weight: {data.weight}</p>
                     <ul>
