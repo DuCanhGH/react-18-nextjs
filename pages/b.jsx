@@ -18,9 +18,12 @@ const RevalidateButton = () => {
     const [revalidated, setRevalidated] = useState(false);
     const onClick = useCallback(async () => {
         if (!revalidated) {
-            const res = await fetch(`/api/revalidate?pathname=${pathname}&secret=this should be a real secret`, {
-                method: "get",
-            });
+            const res = await fetch(
+                `/api/revalidate?pathname=${pathname}&secret=this should be a real secret`,
+                {
+                    method: "get",
+                },
+            );
             if (res.ok) {
                 const { revalidated } = await res.json();
                 setRevalidated(revalidated || false);
