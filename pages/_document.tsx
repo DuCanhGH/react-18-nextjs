@@ -14,11 +14,6 @@ class CustomDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
-                    <script
-                        dangerouslySetInnerHTML={{
-                            __html: `console.log('I will always be blocked by a strict CSP')`,
-                        }}
-                    />
                 </body>
             </Html>
         );
