@@ -1,4 +1,4 @@
-import { chain, nextSafe, strictDynamic, reporting } from "@next-safe/middleware";
+import { chain, nextSafe, strictDynamic, strictInlineStyles, reporting } from "@next-safe/middleware";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -10,11 +10,10 @@ const middleware = nextSafe((req) => {
         isDev,
         contentSecurityPolicy: {
             reportOnly: reportOnly ?? true,
-            "default-src": ["'self' blob:", origin, "https://pokeapi.co"],
-            "img-src": ["'self'", origin, "https: data:"],
-            "connect-src": ["'self'", origin, "https://pokeapi.co"],
-            "style-src": ["'self'", "'unsafe-inline'", origin],
-            "script-src": ["'self'", origin],
+            "default-src": ["blob:", origin, "https://pokeapi.co"],
+            "img-src": [origin, "https://pokeapi.co"],
+            "connect-src": [origin, "https://pokeapi.co"],
+            "script-src": origin,
         },
     };
 });
@@ -36,4 +35,4 @@ const reportingMiddleware = reporting((req) => {
     };
 });
 
-export default chain(middleware, strictDynamic(), reportingMiddleware);
+export default chain(middleware, strictDynamic(), strictInlineStyles({ extendStyleSrc: false }), reportingMiddleware);

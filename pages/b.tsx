@@ -41,7 +41,7 @@ const RevalidateButton = () => {
     }, [pathname, revalidated]);
 
     return (
-        <button type="button" className="btn btn-blue" onClick={onClick}>
+        <button type="button" onClick={onClick}>
             {!revalidated ? "Change it/revalidate!" : "Revalidated! Click to Reload the page"}
         </button>
     );
