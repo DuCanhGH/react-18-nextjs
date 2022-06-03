@@ -1,14 +1,19 @@
-/* eslint-disable */
+//Copied from Nibtime's demo. This file has been editted.
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
+import { GetStaticProps } from "next";
 
-// required for Hash-based CSP to work with ISR on Vercel
+// according to author: required for Hash-based CSP to work with ISR on Vercel
 export const config = {
     unstable_includeFiles: [".next/static/chunks/**/*.js"],
 };
 
-export const getStaticProps = async () => {
+interface Props {
+    random: number
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
     const random = Math.random() * 100;
     return { props: { random } };
 };
@@ -37,38 +42,35 @@ const RevalidateButton = () => {
 
     return (
         <button type="button" onClick={onClick}>
-            {!revalidated ? "Change it / revalidate!" : "Revalidated! Click to Reload the page"}
+            {!revalidated ? "Change it/revalidate!" : "Revalidated! Click to Reload the page"}
         </button>
     );
 };
-const Page = ({ random }) => {
+
+const Page = (props: Props) => {
+    const { random } = props;
     return (
         <>
             <>
-                <h1>A Page with getStaticProps</h1>
+                <h1>A page that uses getStaticProps</h1>
                 <p>
-                    A random number generated at build-time that doesn't change: {random}. Don't
-                    like that number? Then try the new Next 12.1 on-demand ISR feature:
+                    {"A random number generated at build-time that doesn't change: " + random}.
                 </p>
                 <p>
                     <RevalidateButton />
                 </p>
                 <p>
-                    It get's prerendered at build-time and has no access to request and response
-                    data. Can't use a Nonce-based CSP here, because it doesn't rerender per request.
-                    Must use a Hash-based CSP.
+                    {"This page gets prerendered at build-time and has no access to request and response data. Can't use a nonce-based CSP here, because it doesn't rerender per request. Must use a hash-based CSP."}
                 </p>
-                <h2>Internal navigation to other pages</h2>
+                <h2>Navigation to other pages:</h2>
                 <ul>
                     <li>
-                        <Link href="/isr/lazy-slug">
-                            <a>
-                                Page with getStaticProps + <code>revalidate</code> (ISR)
-                            </a>
+                        <Link href="/pikachu">
+                            Page with getServerSideProps
                         </Link>
                     </li>
                     <li>
-                        <Link href="/dynamic-page">Page with getServerSideProps</Link>
+                        <Link href="/a">Another page with getServerSideProps</Link>
                     </li>
                 </ul>
             </>
