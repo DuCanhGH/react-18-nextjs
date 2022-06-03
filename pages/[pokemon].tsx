@@ -51,7 +51,7 @@ export default function Home(props: PageProps) {
                         <p>Height: {data.height}</p>
                         <p>Weight: {data.weight}</p>
                         <ul>
-                            Types:{" "}
+                            <li>Types:{" "}</li>
                             {data.types.map(({ type }) => (
                                 <li key={type.name}>{type.name}</li>
                             ))}
