@@ -12,6 +12,7 @@ specifiers:
   axios: 0.27.2
   eslint: 8.16.0
   eslint-config-next: 12.1.6
+  eslint-config-prettier: 8.5.0
   next: 12.1.6
   next-pwa: 5.5.2
   postcss: 8.4.14
@@ -46,6 +47,7 @@ devDependencies:
   autoprefixer: 10.4.7_postcss@8.4.14
   eslint: 8.16.0
   eslint-config-next: 12.1.6_k6khgwrcmlpd2kpaxkviqw2zii
+  eslint-config-prettier: 8.5.0_eslint@8.16.0
   postcss: 8.4.14
   prettier: 2.6.2
   tailwindcss: 3.0.24
@@ -2590,6 +2592,15 @@ packages:
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
+    dev: true
+
+  /eslint-config-prettier/8.5.0_eslint@8.16.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.16.0
     dev: true
 
   /eslint-import-resolver-node/0.3.6:

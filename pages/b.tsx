@@ -10,7 +10,7 @@ export const config = {
 };
 
 interface Props {
-    random: number
+    random: number;
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
@@ -41,7 +41,7 @@ const RevalidateButton = () => {
     }, [pathname, revalidated]);
 
     return (
-        <button type="button" onClick={onClick}>
+        <button type="button" className="btn btn-blue" onClick={onClick}>
             {!revalidated ? "Change it/revalidate!" : "Revalidated! Click to Reload the page"}
         </button>
     );
@@ -53,21 +53,19 @@ const Page = (props: Props) => {
         <>
             <>
                 <h1>A page that uses getStaticProps</h1>
-                <p>
-                    {"A random number generated at build-time that doesn't change: " + random}.
-                </p>
+                <p>{"A random number generated at build-time that doesn't change: " + random}.</p>
                 <p>
                     <RevalidateButton />
                 </p>
                 <p>
-                    {"This page gets prerendered at build-time and has no access to request and response data. Can't use a nonce-based CSP here, because it doesn't rerender per request. Must use a hash-based CSP."}
+                    {
+                        "This page gets prerendered at build-time and has no access to request and response data. Can't use a nonce-based CSP here, because it doesn't rerender per request. Must use a hash-based CSP."
+                    }
                 </p>
                 <h2>Navigation to other pages:</h2>
                 <ul>
                     <li>
-                        <Link href="/pikachu">
-                            Page with getServerSideProps
-                        </Link>
+                        <Link href="/pikachu">Page with getServerSideProps</Link>
                     </li>
                     <li>
                         <Link href="/a">Another page with getServerSideProps</Link>
