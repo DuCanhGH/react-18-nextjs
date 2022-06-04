@@ -14,6 +14,9 @@ const nextConfig = withPWA({
         runtimeCaching,
         disable: process.env.NODE_ENV === "production" ? false : true,
     },
+    images: {
+        formats: ["image/avif", "image/webp"],
+    },
 });
 
 module.exports = nextConfig;
