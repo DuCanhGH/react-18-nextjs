@@ -4,6 +4,9 @@ import axios from "axios";
 import "~/scripts/wdyr";
 import "~/scripts/axe_core";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+
+const LSComponent = dynamic(() => import("../components/locomotive_scroll_client"), { ssr: false });
 
 export function reportWebVitals(metrics: NextWebVitalsMetric) {
     if (process.env.NODE_ENV !== "production") {
@@ -33,6 +36,10 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
                 }}
             >
                 <Component {...pageProps} />
+                <LSComponent />
+                <div data-scroll-container>
+
+                </div>
             </SWRConfig>
         </>
     );
