@@ -62,7 +62,13 @@ export default function Home(props: PageProps) {
                     "loading..."
                 )}
             </div>
-            <input type="password" value={value} onChange={(e) => { setValue(e.target.value) }}></input>
+            <input
+                type="password"
+                value={value}
+                onChange={(e) => {
+                    setValue(e.target.value);
+                }}
+            ></input>
         </>
     );
 }
