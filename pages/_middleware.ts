@@ -2,14 +2,12 @@ import { chain, nextSafe, strictDynamic, reporting } from "@next-safe/middleware
 
 const isDev = process.env.NODE_ENV !== "production";
 
-const reportOnly = !!process.env.CSP_REPORT_ONLY;
-
 const middleware = nextSafe((req) => {
     const { origin } = req.nextUrl;
     return {
         isDev,
         contentSecurityPolicy: {
-            reportOnly: reportOnly ?? false,
+            reportOnly: false,
             "default-src": ["'self' blob:", origin, "https://pokeapi.co"],
             "img-src": ["'self'", origin, "https://pokeapi.co"],
             "connect-src": ["'self'", origin, "https://pokeapi.co"],
