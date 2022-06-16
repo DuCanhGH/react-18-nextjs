@@ -1,8 +1,8 @@
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { SWRConfig } from "swr";
 import axios from "axios";
-import "~/scripts/wdyr";
-import "~/scripts/axe_core";
+import "@/scripts/wdyr";
+import "@/scripts/axe_core";
 import Head from "next/head";
 
 export function reportWebVitals(metrics: NextWebVitalsMetric) {

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import useSWR from "swr";
 import { GetServerSideProps } from "next";
-import axios from "axios";
+import { axios } from "shared";
 import { useState } from "react";
 
 const getURL = (pokemon?: string | string[]) => `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
@@ -46,7 +46,7 @@ export default function Home(props: PageProps) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div>
-                <h1>Pokemon: {pokemon}</h1>
+                <h2>Pokemon: {pokemon}</h2>
                 {data ? (
                     <div>
                         <p>Height: {data.height}</p>
