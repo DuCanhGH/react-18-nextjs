@@ -68,7 +68,7 @@ export default function Home(props: PageProps) {
                 onChange={(e) => {
                     setValue(e.target.value);
                 }}
-            ></input>
+            />
         </>
     );
 }

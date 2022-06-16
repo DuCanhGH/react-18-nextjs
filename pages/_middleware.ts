@@ -9,7 +9,7 @@ const middleware = nextSafe((req) => {
     return {
         isDev,
         contentSecurityPolicy: {
-            reportOnly: reportOnly ?? true,
+            reportOnly: reportOnly ?? false,
             "default-src": ["'self' blob:", origin, "https://pokeapi.co"],
             "img-src": ["'self'", origin, "https://pokeapi.co"],
             "connect-src": ["'self'", origin, "https://pokeapi.co"],

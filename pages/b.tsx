@@ -1,5 +1,4 @@
 //Copied from Nibtime's demo. This file has been editted.
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { GetStaticProps } from "next";
@@ -62,15 +61,6 @@ const Page = (props: Props) => {
                         "This page gets prerendered at build-time and has no access to request and response data. Can't use a nonce-based CSP here, because it doesn't rerender per request. Must use a hash-based CSP."
                     }
                 </p>
-                <h2>Navigation to other pages:</h2>
-                <ul>
-                    <li>
-                        <Link href="/pikachu">Page with getServerSideProps</Link>
-                    </li>
-                    <li>
-                        <Link href="/a">Another page with getServerSideProps</Link>
-                    </li>
-                </ul>
             </>
         </>
     );

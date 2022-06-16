@@ -4,6 +4,7 @@ import axios from "axios";
 import "@/scripts/wdyr";
 import "@/scripts/axe_core";
 import Head from "next/head";
+import AppLinks from "@/components/links";
 
 export function reportWebVitals(metrics: NextWebVitalsMetric) {
     if (process.env.NODE_ENV !== "production") {
@@ -33,6 +34,7 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
                 }}
             >
                 <Component {...pageProps} />
+                <AppLinks />
             </SWRConfig>
         </>
     );
