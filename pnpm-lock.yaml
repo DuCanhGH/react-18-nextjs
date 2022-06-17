@@ -13,6 +13,7 @@ specifiers:
   eslint-config-next: 12.1.6
   eslint-config-prettier: 8.5.0
   next: 12.1.6
+  next-compose-plugins: 2.2.1
   next-pwa: 5.5.4
   prettier: 2.7.0
   react: 18.2.0
@@ -27,6 +28,7 @@ dependencies:
   '@next-safe/middleware': 0.6.0_next@12.1.6+react@18.2.0
   axios: 0.27.2
   next: 12.1.6_4cc5zw5azim2bix77d63le72su
+  next-compose-plugins: 2.2.1
   next-pwa: 5.5.4_luloen44oukssb55dmrjlgt2ym
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -3518,6 +3520,10 @@ packages:
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
+
+  /next-compose-plugins/2.2.1:
+    resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==}
+    dev: false
 
   /next-pwa/5.5.4_luloen44oukssb55dmrjlgt2ym:
     resolution: {integrity: sha512-EgB2MQWGR8oZDzY6US+/D0LOCUhPZYCgeqRVBYDxQWNi0N6XfQOoZPw2COIrg/eMt/rB0M+/mquhAQACs5v4Ag==}

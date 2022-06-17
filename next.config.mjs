@@ -3,10 +3,11 @@
 /**
  * @type {import('next').NextConfig}
  **/
-const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
+import withPWA from "next-pwa";
+import runtimeCaching from "next-pwa/cache.js";
+import withPlugins from "next-compose-plugins";
 
-const nextConfig = withPWA({
+const nextConfig = withPlugins([withPWA], {
     reactStrictMode: true,
     swcMinify: true,
     pwa: {
@@ -19,4 +20,4 @@ const nextConfig = withPWA({
     },
 });
 
-module.exports = nextConfig;
+export default nextConfig;
