@@ -35,6 +35,7 @@ const Page = (props: Props) => {
             <pre>{JSON.stringify(requestHeaders, null, 2)}</pre>
             <h2>Response headers</h2>
             <pre>{JSON.stringify(responseHeaders, null, 2)}</pre>
+            <p>NODE_ENV: {process.env.NODE_ENV}</p>
         </Suspense>
     );
 };
