@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
     }
     try {
-        await res.revalidate(pathToRevalidate);
+        await res.unstable_revalidate(pathToRevalidate);
         return res.json({ revalidated: true });
     } catch (err) {
         // If there was an error, Next.js will continue
