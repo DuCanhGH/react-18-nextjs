@@ -34,4 +34,4 @@ const reportingMiddleware = reporting(() => {
     };
 });
 
-export default chain(middleware, strictDynamic(), reportingMiddleware);
+export default chain(middleware, strictDynamic());
