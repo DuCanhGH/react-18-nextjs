@@ -1,27 +1,12 @@
-import { chain, nextSafe, strictDynamic, reporting } from "@next-safe/middleware";
+import { chain, nextSafe, csp, strictDynamic, reporting } from "@next-safe/middleware";
 
 const isDev = process.env.NODE_ENV !== "production";
-
-const middleware = nextSafe((req) => {
-    const { origin } = req.nextUrl;
-    return {
-        isDev,
-        contentSecurityPolicy: {
-            reportOnly: isDev,
-            "default-src": ["'self' blob:", origin, "https://pokeapi.co"],
-            "img-src": ["'self'", origin, "https://pokeapi.co"],
-            "connect-src": ["'self'", origin, "https://pokeapi.co"],
-            "style-src": ["'self'", "'unsafe-inline'", origin],
-            "script-src": ["'self'", origin],
-        },
-    };
-});
 
 const reportingMiddleware = reporting(() => {
     const nextApiReportEndpoint = `/api/reporting`;
     return {
         csp: {
-            reportUri: process.env.CSP_REPORT_URI || nextApiReportEndpoint,
+            reportUri: nextApiReportEndpoint,
         },
         reportTo: {
             max_age: 1800,
@@ -34,4 +19,21 @@ const reportingMiddleware = reporting(() => {
     };
 });
 
-export default chain(middleware, strictDynamic());
+const securityMiddleware = [
+    nextSafe({ isDev, disableCsp: true }),
+    csp({
+        isDev,
+        directives: {
+            "default-src": ["self", "blob:", "https://pokeapi.co"],
+            "img-src": ["self", "https://pokeapi.co"],
+            "connect-src": ["self", "https://pokeapi.co"],
+            "style-src": ["self", "unsafe-inline"],
+            "script-src": ["self"],
+        },
+        reportOnly: isDev,
+    }),
+    strictDynamic(),
+    reportingMiddleware
+];
+
+export default chain(...securityMiddleware);

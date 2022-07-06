@@ -1,9 +1,9 @@
-import { Html, Main, DocumentContext } from "next/document";
-import Document, { provideComponents } from "@next-safe/middleware/dist/document";
+import Document, { Html, Main, DocumentContext } from "next/document";
+import { getCspInitialProps, provideComponents } from "@next-safe/middleware/dist/document";
 
 class CustomDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        const initialProps = await Document.getInitialProps(ctx);
+        const initialProps = await getCspInitialProps({ ctx });
         return initialProps;
     }
     render() {
