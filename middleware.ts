@@ -33,7 +33,7 @@ const securityMiddleware = [
         reportOnly: isDev,
     }),
     strictDynamic(),
-    reportingMiddleware
+    reportingMiddleware,
 ];
 
 export default chain(...securityMiddleware);
