@@ -1,4 +1,4 @@
-import { chain, nextSafe, csp, strictDynamic, reporting } from "@next-safe/middleware";
+import { chainMatch, nextSafe, isPageRequest, csp, strictDynamic, reporting } from "@next-safe/middleware";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -36,4 +36,4 @@ const securityMiddleware = [
     reportingMiddleware,
 ];
 
-export default chain(...securityMiddleware);
+export default chainMatch(isPageRequest)(...securityMiddleware);
