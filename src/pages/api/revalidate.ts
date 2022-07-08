@@ -5,7 +5,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.query.secret !== "this should be a real secret") {
         return res.status(401).json({ message: "Invalid token" });
     }
-
     const pathToRevalidate = req.query.pathname;
     if (!pathToRevalidate || typeof pathToRevalidate !== "string") {
         return res.status(404).json({

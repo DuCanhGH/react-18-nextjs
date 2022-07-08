@@ -1,7 +1,7 @@
 import Head from "next/head";
 import useSWR from "swr";
 import { GetServerSideProps } from "next";
-import { axios } from "shared";
+import { axios } from "@/shared";
 import { useState } from "react";
 
 const getURL = (pokemon?: string | string[]) => `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
