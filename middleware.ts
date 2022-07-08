@@ -1,4 +1,12 @@
-import { chainMatch, nextSafe, isPageRequest, csp, strictDynamic, reporting } from "@next-safe/middleware";
+import {
+    chain,
+    chainMatch,
+    nextSafe,
+    isPageRequest,
+    csp,
+    strictDynamic,
+    reporting,
+} from "@next-safe/middleware";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -25,10 +33,12 @@ const securityMiddleware = [
         isDev,
         directives: {
             "default-src": ["self", "blob:", "https://pokeapi.co"],
+            "object-src": ["none"],
+            "base-uri": ["none"],
             "img-src": ["self", "https://pokeapi.co"],
             "connect-src": ["self", "https://pokeapi.co"],
             "style-src": ["self", "unsafe-inline"],
-            "script-src": ["self"],
+            "worker-src": ["self"],
         },
         reportOnly: isDev,
     }),
@@ -36,4 +46,4 @@ const securityMiddleware = [
     reportingMiddleware,
 ];
 
-export default chainMatch(isPageRequest)(...securityMiddleware);
+export default chain(/*Insert middleware here*/ chainMatch(isPageRequest)(...securityMiddleware));
