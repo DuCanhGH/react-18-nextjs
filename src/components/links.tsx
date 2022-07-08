@@ -17,6 +17,9 @@ const AppLinks = () => {
                 <li>
                     <Link href="/b">A page with getStaticProps (/b)</Link>
                 </li>
+                <li>
+                    <Link href="/blog/a">A page with getServerSideProps and CmtIO (/blog/a)</Link>
+                </li>
             </ul>
         </>
     );

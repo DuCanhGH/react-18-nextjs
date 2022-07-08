@@ -3,7 +3,7 @@ import { getCspInitialProps, provideComponents } from "@next-safe/middleware/dis
 
 class CustomDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        const initialProps = await getCspInitialProps({ ctx });
+        const initialProps = await getCspInitialProps({ ctx, trustifyStyles: true });
         return initialProps;
     }
     render() {

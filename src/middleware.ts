@@ -38,7 +38,7 @@ const securityMiddleware = [
             "base-uri": ["none"],
             "img-src": ["self", "https://pokeapi.co"],
             "connect-src": ["self", "https://pokeapi.co"],
-            "style-src": ["self", "unsafe-inline"],
+            "style-src": ["self"],
             "child-src": ["none"],
             "font-src": ["self"],
             "form-action": ["self"],
@@ -52,7 +52,9 @@ const securityMiddleware = [
         reportOnly: isDev,
     }),
     strictDynamic(),
-    strictInlineStyles(),
+    strictInlineStyles({
+        extendStyleSrc: true
+    }),
     reportingMiddleware,
 ];
 
