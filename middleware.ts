@@ -47,3 +47,7 @@ const securityMiddleware = [
 ];
 
 export default chain(/*Insert middleware here*/ chainMatch(isPageRequest)(...securityMiddleware));
+
+export const config = {
+    runtime: "experimental-edge",
+};

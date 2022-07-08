@@ -1,13 +1,10 @@
 // @ts-check
-
-/**
- * @type {import('next').NextConfig}
- **/
 import withPWA from "next-pwa";
 import runtimeCaching from "next-pwa/cache.js";
 import withPlugins from "next-compose-plugins";
 
-const nextConfig = withPlugins([withPWA], {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     pwa: {
@@ -18,6 +15,9 @@ const nextConfig = withPlugins([withPWA], {
     images: {
         formats: ["image/avif", "image/webp"],
     },
-});
+    experimental: {
+        runtime: "experimental-edge",
+    },
+};
 
-export default nextConfig;
+export default withPlugins([withPWA], nextConfig);

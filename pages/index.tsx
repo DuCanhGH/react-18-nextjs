@@ -8,11 +8,7 @@ export default function Index() {
                 <title>Homepage</title>
             </Head>
             <main>
-                <div>
-                    <Link href="/pikachu">
-                        <a>Pikachu</a>
-                    </Link>
-                </div>
+                <Link href="/pikachu">Pikachu</Link>
             </main>
         </>
     );

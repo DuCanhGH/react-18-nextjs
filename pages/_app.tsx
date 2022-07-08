@@ -1,8 +1,9 @@
+import "@/scripts/wdyr";
+import "@/scripts/axe_core";
+import "@/styles/globals.css";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { SWRConfig } from "swr";
 import axios from "axios";
-import "@/scripts/wdyr";
-import "@/scripts/axe_core";
 import Head from "next/head";
 import AppLinks from "@/components/links";
 
