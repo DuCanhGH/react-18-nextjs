@@ -3,13 +3,13 @@ import { GetServerSideProps } from "next";
 import { CmtioIframe } from "@/components/CmtioIframe";
 
 interface SSProps {
-    url?: string;
+    url: string;
 }
 
-export const getServerSideProps: GetServerSideProps<SSProps> = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps<SSProps> = async ({ resolvedUrl }) => {
     return {
         props: {
-            url: req.url,
+            url: resolvedUrl,
         },
     };
 };
@@ -26,7 +26,7 @@ export default function Home(props: SSProps) {
             <main>
                 <p>Some content</p>
                 <div id="cmtio-root">
-                    <CmtioIframe url={url ?? "/"} />
+                    <CmtioIframe url={url} />
                 </div>
             </main>
         </>
