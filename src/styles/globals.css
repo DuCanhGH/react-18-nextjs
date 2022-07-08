@@ -5,8 +5,3 @@
 a {
 	@apply underline text-blue-600 hover:text-blue-800;
 }
-
-.cmtio-iframe {
-	width: 100%;
-	height: fit-content
-}
