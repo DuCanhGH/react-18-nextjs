@@ -5,6 +5,7 @@ import {
     isPageRequest,
     csp,
     strictDynamic,
+    strictInlineStyles,
     reporting,
 } from "@next-safe/middleware";
 
@@ -51,6 +52,7 @@ const securityMiddleware = [
         reportOnly: isDev,
     }),
     strictDynamic(),
+    strictInlineStyles(),
     reportingMiddleware,
 ];
 

@@ -33,10 +33,7 @@ export const CmtioIframe = (props: Props) => {
                 sorting,
             )}&commentsPerPage=${CMTIO_COMMENTS_PER_PAGE}`}
             title="CmtIO embedded comments"
-            style={{
-                width: "100%",
-                height: "fit-content",
-            }}
+            className="cmtio-iframe"
             frameBorder="0"
             ref={cmtioref}
         />
