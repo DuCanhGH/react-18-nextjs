@@ -1,23 +1,28 @@
-import Document, { Html, Main, DocumentContext } from "next/document";
+import { Html, Main, DocumentContext, DocumentProps, DocumentInitialProps } from "next/document";
 import { getCspInitialProps, provideComponents } from "@next-safe/middleware/dist/document";
 
-class CustomDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
-        const initialProps = await getCspInitialProps({ ctx, trustifyStyles: true });
-        return initialProps;
-    }
-    render() {
-        const { Head, NextScript } = provideComponents(this.props);
-        return (
-            <Html lang="en">
-                <Head />
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        );
-    }
+const CustomDocument = (props: DocumentProps) => {
+    const { Head, NextScript } = provideComponents(props);
+    return (
+        <Html lang="en">
+            <Head />
+            <body>
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
+    );
+};
+
+interface InitialPropsType extends DocumentInitialProps {
+    nonce: string;
+    trustifyStyles: boolean;
+    trustifyScripts: boolean;
 }
+
+CustomDocument.getInitialProps = async (ctx: DocumentContext): Promise<InitialPropsType> => {
+    const initialProps = await getCspInitialProps({ ctx, trustifyStyles: true });
+    return initialProps;
+};
 
 export default CustomDocument;

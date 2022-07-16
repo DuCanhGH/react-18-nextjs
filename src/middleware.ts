@@ -53,7 +53,7 @@ const securityMiddleware = [
     }),
     strictDynamic(),
     strictInlineStyles({
-        extendStyleSrc: true
+        extendStyleSrc: true,
     }),
     reportingMiddleware,
 ];
