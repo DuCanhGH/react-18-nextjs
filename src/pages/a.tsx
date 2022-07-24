@@ -1,4 +1,5 @@
 //Copied from Nibtime's demo. This file has been editted.
+import { gsspWithNonceAppliedToCsp } from "@next-safe/middleware/dist/document";
 import { GetServerSideProps } from "next";
 import { OutgoingHttpHeaders, IncomingHttpHeaders } from "http2";
 import { Suspense } from "react";
@@ -8,14 +9,16 @@ interface Props {
     responseHeaders: OutgoingHttpHeaders;
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-    return {
-        props: {
-            requestHeaders: ctx.req?.headers,
-            responseHeaders: ctx.res?.getHeaders(),
-        },
-    };
-};
+export const getServerSideProps: GetServerSideProps<Props> = gsspWithNonceAppliedToCsp(
+    async (ctx) => {
+        return {
+            props: {
+                requestHeaders: ctx.req?.headers,
+                responseHeaders: ctx.res?.getHeaders(),
+            },
+        };
+    },
+);
 
 const Page = (props: Props) => {
     const { requestHeaders, responseHeaders } = props;

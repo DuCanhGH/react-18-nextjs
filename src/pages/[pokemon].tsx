@@ -1,6 +1,7 @@
 import Head from "next/head";
 import useSWR from "swr";
 import { GetServerSideProps } from "next";
+import { gsspWithNonceAppliedToCsp } from "@next-safe/middleware/dist/document";
 import { axios } from "@/shared";
 import { useState } from "react";
 
@@ -24,15 +25,17 @@ interface PageProps {
     fallbackData: Pokemon;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async ({ params }) => {
-    const data = await axios.get(getURL(params?.pokemon)).then((res) => res.data);
-    return {
-        props: {
-            fallbackData: data,
-            pokemon: params?.pokemon,
-        },
-    };
-};
+export const getServerSideProps: GetServerSideProps<PageProps> = gsspWithNonceAppliedToCsp(
+    async ({ params }) => {
+        const data = await axios.get(getURL(params?.pokemon)).then((res) => res.data);
+        return {
+            props: {
+                fallbackData: data,
+                pokemon: params?.pokemon,
+            },
+        };
+    },
+);
 
 export default function Home(props: PageProps) {
     const { pokemon, fallbackData } = props;
@@ -62,8 +65,13 @@ export default function Home(props: PageProps) {
                     "loading..."
                 )}
             </div>
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-input">
+                Password
+            </label>
             <input
                 type="password"
+                id="password-input"
+                className="w-[350px]"
                 value={value}
                 onChange={(e) => {
                     setValue(e.target.value);

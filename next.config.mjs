@@ -1,7 +1,7 @@
 // @ts-check
-const withPlugins = require("next-compose-plugins");
-const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
+import withPlugins from "next-compose-plugins";
+import withPWA from "next-pwa";
+import runtimeCaching from "next-pwa/cache.js";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,4 +20,4 @@ const nextConfig = {
     },
 };
 
-module.exports = withPlugins([withPWA], nextConfig);
+export default withPlugins([withPWA], nextConfig);
