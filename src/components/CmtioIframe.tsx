@@ -14,19 +14,23 @@ export const CmtioIframe = (props: Props) => {
     const CMTIO_SORTING = commentsSorting ?? "newest";
     const CMTIO_COMMENTS_PER_PAGE = commentsPerPage ?? 5;
     const sorting = CMTIO_SORTING === "oldest";
+    const resizeFunction = (e: MessageEvent<any>) => {
+        if (
+            e.origin !== CMTIO_ORIGIN ||
+            e?.data?.siteId !== CMTIO_SITE_ID ||
+            e?.data?.slug !== props.url
+        )
+            return;
+        if (cmtioref.current !== null) {
+            cmtioref.current.style.height = `${e.data.height}px`;
+        }
+    };
     useEffect(() => {
-        window.addEventListener("message", (e) => {
-            if (
-                e.origin !== CMTIO_ORIGIN ||
-                e?.data?.siteId !== CMTIO_SITE_ID ||
-                e?.data?.slug !== props.url
-            )
-                return;
-            if (cmtioref.current !== null) {
-                cmtioref.current.style.height = `${e.data.height}px`;
-            }
-        });
-    }, [props.url]);
+        window.addEventListener("message", resizeFunction);
+        return () => {
+            window.removeEventListener("message", resizeFunction);
+        };
+    }, [props.url, resizeFunction]);
     return (
         <iframe
             src={`${CMTIO_ORIGIN}/embed?siteId=${CMTIO_SITE_ID}&slug=${url}&oldest=${Number(
