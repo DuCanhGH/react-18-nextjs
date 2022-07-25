@@ -1,18 +1,21 @@
 import Head from "next/head";
 import { GetServerSideProps } from "next";
+import { gsspWithNonceAppliedToCsp } from "@next-safe/middleware/dist/document";
 import { CmtioIframe } from "@/components/CmtioIframe";
 
 interface SSProps {
     url: string;
 }
 
-export const getServerSideProps: GetServerSideProps<SSProps> = async ({ resolvedUrl }) => {
-    return {
-        props: {
-            url: resolvedUrl,
-        },
-    };
-};
+export const getServerSideProps: GetServerSideProps<SSProps> = gsspWithNonceAppliedToCsp(
+    async ({ resolvedUrl }) => {
+        return {
+            props: {
+                url: resolvedUrl,
+            },
+        };
+    },
+);
 
 export default function Home(props: SSProps) {
     const { url } = props;
